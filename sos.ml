@@ -13,7 +13,7 @@ let rec sos c = match c with
                 | (Comp (s1, s2), s) ->  if stop (sos (s1, s)) 
                       then (let Inter (s1',s') = sos(s1, s) in Inter (Comp(s1', s2), s')) 
                       else (let Final s' = sos(s1, s) in Inter (s2, s'))   
-                | (If (b, s1, s2), s) -> if Semantics.solve_b = "tt" b s then (Inter (s1, s)) else (Inter (s2, s))
+                | (If (b, s1, s2), s) -> if Semantics.solve_b b s = "tt" then (Inter (s1, s)) else (Inter (s2, s))
                 | (While (b, s1), s) -> Inter (If (b, Comp(s1, While(b, s1)), Skip), s);;
 
  let rec run_sos c = if stop (sos c) 
@@ -40,4 +40,10 @@ print_endline "";;
 
 print_string "y = ";;
 print_int (let Final state = run_sos (Ast.test4, Semantics.s1) in state "y");;
+print_endline "";;
+
+print_string "testttt";;
+print_endline "";;
+print_string "a = ";;
+print_int (let Final state = run_sos (Ast.test5, Semantics.s2) in state "a");;
 print_endline "";;
