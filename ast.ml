@@ -20,7 +20,8 @@ type stm = Ass of var * aexp
             | Skip 
             | Comp of stm * stm 
             | If of bexp * stm * stm 
-            | While of bexp * stm;;
+            | While of bexp * stm
+            | Do_While of bexp * stm;;
 
 type state = var -> int ;;
 

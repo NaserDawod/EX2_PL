@@ -14,7 +14,8 @@ let rec sos c = match c with
                       then (let Inter (s1',s') = sos(s1, s) in Inter (Comp(s1', s2), s')) 
                       else (let Final s' = sos(s1, s) in Inter (s2, s'))   
                 | (If (b, s1, s2), s) -> if Semantics.solve_b b s = "tt" then (Inter (s1, s)) else (Inter (s2, s))
-                | (While (b, s1), s) -> Inter (If (b, Comp(s1, While(b, s1)), Skip), s);;
+                | (While (b, s1), s) -> Inter (If (b, Comp(s1, While(b, s1)), Skip), s)
+                | (Do_While (b, s1), s) -> Inter (Comp (s1, If (b, Do_While (b, s1), Skip)), s)
 
  let rec run_sos c = if stop (sos c) 
                       then (let Inter (s,s0) = sos c in run_sos (s,s0))

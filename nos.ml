@@ -5,7 +5,9 @@ let rec nos c = match c with
             | (Skip, s) -> s
             | (Comp (s1, s2), s) -> nos (s2, nos(s1, s))
             | (If (b, s1, s2), s) -> if Semantics.solve_b b s = "tt" then nos (s1, s) else nos (s2, s)
-            | (While (b, s1), s) -> if Semantics.solve_b b s = "tt" then nos (While (b, s1),nos (s1, s)) else nos (Skip, s);;
+            | (While (b, s1), s) -> if Semantics.solve_b b s = "tt" then nos (While (b, s1),nos (s1, s)) else nos (Skip, s)
+            | (Do_While (b, s1), s) -> if Semantics.solve_b b s = "tt" then nos (Do_While (b, s1), nos (s1, s))
+                                                                       else nos (s1, s);;
 
 (* tests *) 
 
