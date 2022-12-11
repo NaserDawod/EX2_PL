@@ -43,8 +43,6 @@ print_string "y = ";;
 print_int (let Final state = run_sos (Ast.test4, Semantics.s1) in state "y");;
 print_endline "";;
 
-print_string "testttt";;
-print_endline "";;
 print_string "a = ";;
 print_int (let Final state = run_sos (Ast.test5, Semantics.s2) in state "a");;
 print_endline "";;
